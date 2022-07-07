@@ -1,6 +1,4 @@
-<?php
-
-namespace core;
+<?php namespace core;
 
 /**
  * Description of ClassLoader

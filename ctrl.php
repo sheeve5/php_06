@@ -15,25 +15,20 @@ require_once 'init.php';
 //2. wykonanie akcji
 switch ($action) {
 	default : // 'calcView'
-	    // załaduj definicję kontrolera
-		include_once 'app/controllers/CalcCtrl.class.php';
-		// utwórz obiekt i uzyj
-		$ctrl = new CalcCtrl ();
-		$ctrl->generateView ();
+	    	// utwórz obiekt i uzyj
+                // (autoloader sam załaduje plik na podstawie przestrzeni nazw względem folderu głównego aplikacji)
+		$ctrl = new app\controllers\CalcCtrl();
+		$ctrl->generateView();
 	break;
 	case 'calcCompute' :
-		// załaduj definicję kontrolera
-		include_once 'app/controllers/CalcCtrl.class.php';
 		// utwórz obiekt i uzyj
-		$ctrl = new CalcCtrl ();
-		$ctrl->process ();
+		$ctrl = new app\controllers\CalcCtrl();
+		$ctrl->process();
 	break;
     	case 'otherAction' :
-		// załaduj definicję kontrolera
-		include_once 'app/controllers/OtherCtrl.class.php';
 		// utwórz obiekt i uzyj
-		$ctrl = new OtherCtrl ();
-		$ctrl->generateView ();
+		$ctrl = new app\controllers\OtherCtrl();
+		$ctrl->generateView();
 	break;
 	case 'action1' :
 		print('hello');

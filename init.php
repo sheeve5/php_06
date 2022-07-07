@@ -1,13 +1,13 @@
 <?php
 require_once 'core/Config.class.php';
-$conf = new Config();
+$conf = new core\Config();
 require_once  'config.php'; //ustaw konfigurację
 
 function &getConf(){ global $conf; return $conf; }
 
 //załaduj definicję klasy Messages i stwórz obiekt
 require_once 'core/Messages.class.php';
-$msgs = new Messages();
+$msgs = new core\Messages();
 
 function &getMessages(){ global $msgs; return $msgs; }
 

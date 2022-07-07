@@ -1,9 +1,20 @@
 <?php
-// W skrypcie definicji kontrolera nie trzeba dołączać problematycznego skryptu config.php,
-// ponieważ będzie on użyty w miejscach, gdzie config.php zostanie już wywołany.
+// W skrypcie definicji kontrolera nie trzeba dołączać już niczego.
+// Kontroler wskazuje tylko za pomocą 'use' te klasy z których jawnie korzysta
+// (gdy korzysta niejawnie to nie musi - np używa obiektu zwracanego przez funkcję)
 
-require_once 'CalcForm.class.php';
-require_once 'CalcResult.class.php';
+// Zarejestrowany autoloader klas załaduje odpowiedni plik automatycznie w momencie, gdy skrypt będzie go chciał użyć.
+// Jeśli nie wskaże się klasy za pomocą 'use', to PHP będzie zakładać, iż klasa znajduje się w bieżącej
+// przestrzeni nazw - tutaj jest to przestrzeń 'app\controllers'.
+
+// Przypominam, że tu również są dostępne globalne funkcje pomocnicze - o to nam właściwie chodziło
+
+namespace app\controllers;
+
+//zamieniamy zatem 'require' na 'use' wskazując jedynie przestrzeń nazw, w której znajduje się klasa
+use app\forms\CalcForm;
+use app\transfer\CalcResult;
+
 /** Kontroler kalkulatora
  * @author Przemysław Kudłacik
  *
@@ -103,8 +114,11 @@ class CalcCtrl {
 	 * Wygenerowanie widoku
 	 */
 	public function generateView(){
-		getSmarty()->assign('page_title','Przykład 06a');
-		getSmarty()->assign('page_description','Aplikacja z jednym "punktem wejścia". Zmiana w postaci nowej struktury foderów, skryptu inicjalizacji oraz pomocniczych funkcji.');
+		//nie trzeba już tworzyć Smarty i przekazywać mu konfiguracji i messages
+		// - wszystko załatwia funkcja getSmarty()
+		
+		getSmarty()->assign('page_title','Przykład 06b');
+		getSmarty()->assign('page_description','Kolejne rozszerzenia dla aplikacja z jednym "punktem wejścia". Do nowej struktury dołożono automatyczne ładowanie klas wykorzystując w strukturze przestrzenie nazw.');
 		getSmarty()->assign('page_header','Kontroler główny');
 					
 		getSmarty()->assign('form',$this->form);
